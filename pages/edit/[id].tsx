@@ -50,10 +50,8 @@ interface EditUserFormProps {
 const EditUser = ({ user }: EditUserFormProps) => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const refreshData = () => {
-    router.replace(router.asPath);
-  };
   const { id } = router.query;
+
   const methods = useForm<FormData>({
     mode: 'onBlur',
     reValidateMode: 'onChange',
@@ -96,7 +94,6 @@ const EditUser = ({ user }: EditUserFormProps) => {
       reset();
 
       router.push('/home');
-      refreshData();
     } catch (error) {
       dispatch(setStatus(PROCESSING_STATUSES.ERROR));
       console.error(error);
